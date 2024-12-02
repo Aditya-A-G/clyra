@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import logo from "../../../../public/logo.png";
 
-export const Sidebar = () => {
+export const Sidebar = ({className}: {className?: string}) => {
   return (
-    <div className="w-24 flex flex-col items-center py-8">
+    <div className={`w-24 flex flex-col items-center py-8 ${className}`}>
       <div className="w-16 h-16 rounded-full flex items-center justify-center relative mb-12">
         <Image src={logo} alt="logo" />
       </div>
