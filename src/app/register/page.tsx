@@ -233,11 +233,16 @@ export default function RegisterPage() {
                     <>
                       <div className="grid grid-cols-2 gap-4">
                         <DatePicker />
-                        <Input
-                          placeholder="Gender"
-                          className="rounded-xl"
-                          required
-                        />
+                        <Select>
+                          <SelectTrigger className="rounded-xl">
+                            <SelectValue placeholder="Select gender" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                       <Input
                         placeholder="School"
