@@ -111,7 +111,7 @@ export default function RegisterPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword((prev) => !prev)}
-                      className="absolute right-3 top-0 text-gray-600"
+                      className="absolute right-3 top-0 text-gray-600 text-sm"
                     >
                       {showPassword ? "Hide" : "Show"}
                     </button>
@@ -136,7 +136,7 @@ export default function RegisterPage() {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword((prev) => !prev)}
-                      className="absolute right-3 top-0 text-gray-600"
+                      className="absolute right-3 top-0 text-gray-600 text-sm"
                     >
                       {showConfirmPassword ? "Hide" : "Show"}
                     </button>
