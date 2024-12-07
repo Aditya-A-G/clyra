@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { countries, Country, State } from "@/lib/countries-states";
 
-export default function RegisterPage() {
+export default function SignUp() {
   const [step, setStep] = useState<"register" | "additional-info">("register");
   const [userType, setUserType] = useState<"parent" | "student">("parent");
   const [email, setEmail] = useState("");
