@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Bell } from "lucide-react";
 import Image from "next/image";
-import counsellorImage from "../../../public/counsellor.png";
+import counsellorImage from "../../../../public/counsellor.png";
 import { useState } from "react";
 
 export default function Schedule() {

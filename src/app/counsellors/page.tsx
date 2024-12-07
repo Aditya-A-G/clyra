@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Bell } from "lucide-react";
 import Image from "next/image";
 import counsellorImage from "../../../public/counsellor.png";
+import Link from "next/link";
 
 type Counsellor = {
   name: string;
@@ -93,9 +94,11 @@ export default function Counsellors() {
                     <p className="text-[#FF6B6B]  text-base font-semibold">
                       ${counsellor.pricePerHour} / Per hour
                     </p>
-                    <Button className="bg-[#333333] text-white hover:bg-[#444444] rounded-full px-6 py-2 text-base font-semibold">
-                      Schedule
-                    </Button>
+                    <Link href={`/counsellors/${counsellor.name}`}>
+                      <Button className="bg-[#333333] text-white hover:bg-[#444444] rounded-full px-6 py-2 text-base font-semibold">
+                        Schedule
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
