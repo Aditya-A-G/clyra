@@ -11,7 +11,42 @@ import { DatePicker } from "@/components/ui/date-picker";
 export default function RegisterPage() {
   const [step, setStep] = useState<"register" | "additional-info">("register");
   const [userType, setUserType] = useState<"parent" | "student">("parent");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const isPasswordValid = (password: string) => {
+    const strongPasswordRegex =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const emailPart = email.split("@")[0];
+    if (!emailPart) return false;
+
+    return (
+      strongPasswordRegex.test(password) &&
+      !password.toLowerCase().includes(emailPart.toLowerCase())
+    );
+  };
+
+  const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isPasswordValid(password)) {
+      setError(
+        "Password must be at least 8 characters long, contain an uppercase letter, a number, a special character, and not contain parts of your email."
+      );
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    setError("");
+    setStep("additional-info");
+  };
   return (
     <main className="grid grid-cols-12 min-h-screen bg-[#f5f0e8]">
       <div className="lg:col-span-2"></div>
@@ -29,13 +64,7 @@ export default function RegisterPage() {
                 <h2 className="text-2xl font-bold">Create your account</h2>
               </div>
 
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setStep("additional-info");
-                }}
-              >
+              <form className="space-y-4" onSubmit={handleRegisterSubmit}>
                 <div className="space-y-2">
                   <Input
                     id="email"
@@ -43,30 +72,56 @@ export default function RegisterPage() {
                     type="email"
                     required
                     className="rounded-xl"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 relative">
                   <Input
                     id="password"
                     placeholder="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     required
                     className="rounded-xl"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
+                  {password && (
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute right-3 top-0 text-gray-600"
+                    >
+                      {showPassword ? "Hide" : "Show"}
+                    </button>
+                  )}
                   <p className="text-xs text-muted-foreground">
-                    Use an 8+ character alphanumeric password that&apos;s unique
-                    and unrelated to your name or email.
+                    Use a password that is at least 8 characters long, contains
+                    an uppercase letter, a number, a special character, and does
+                    not contain parts of your email.
                   </p>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 relative">
                   <Input
                     id="confirm-password"
                     placeholder="Re-enter password"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     required
                     className="rounded-xl"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
+                  {confirmPassword && (
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword((prev) => !prev)}
+                      className="absolute right-3 top-0 text-gray-600"
+                    >
+                      {showConfirmPassword ? "Hide" : "Show"}
+                    </button>
+                  )}
                 </div>
+                {error && <p className="text-sm text-red-500">{error}</p>}
                 <div className="space-y-4">
                   <p className="text-sm text-muted-foreground">
                     By registering, you are accepting{" "}
@@ -88,7 +143,7 @@ export default function RegisterPage() {
                     className="w-full rounded-xl bg-[#00813d] hover:bg-[#006731] text-lg h-12"
                     type="submit"
                   >
-                    Sign In
+                    Sign Up
                   </Button>
                   <p className="text-center text-sm">
                     Already have an account? Then please{" "}
