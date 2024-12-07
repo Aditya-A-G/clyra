@@ -259,11 +259,18 @@ export default function RegisterPage() {
                         className="rounded-xl"
                         required
                       />
-                      <Input
-                        placeholder="Grade"
-                        className="rounded-xl"
-                        required
-                      />
+                      <Select>
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select grade" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {["9th", "10th", "11th", "12th"].map((grade) => (
+                            <SelectItem key={grade} value={grade}>
+                              {grade}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </>
                   )}
 
