@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { countries, Country, State } from "@/lib/countries-states";
 
 export default function RegisterPage() {
   const [step, setStep] = useState<"register" | "additional-info">("register");
@@ -24,6 +25,8 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [selectedState, setSelectedState] = useState<State | null>(null);
 
   const incomeRanges = [
     "Less than $20,000",
@@ -204,16 +207,53 @@ export default function RegisterPage() {
 
                   {userType === "parent" ? (
                     <>
-                      <Input
-                        placeholder="Country"
-                        className="rounded-xl"
-                        required
-                      />
-                      <Input
-                        placeholder="State"
-                        className="rounded-xl"
-                        required
-                      />
+                      <Select
+                        onValueChange={(value) => {
+                          const country = countries.find(
+                            (c) => c.name === value
+                          );
+                          setSelectedCountry(country || null);
+                          setSelectedState(null);
+                        }}
+                      >
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem
+                              key={country.code2}
+                              value={country.name}
+                            >
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      <Select
+                        onValueChange={(value) => {
+                          const state = selectedCountry?.states.find(
+                            (s) => s.name === value
+                          );
+                          setSelectedState(state || null);
+                        }}
+                        disabled={
+                          !selectedCountry ||
+                          selectedCountry.states.length === 0
+                        }
+                      >
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select state" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {selectedCountry?.states.map((state) => (
+                            <SelectItem key={state.code} value={state.name}>
+                              {state.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
 
                       <DatePicker />
                       <Select>
@@ -249,16 +289,52 @@ export default function RegisterPage() {
                         className="rounded-xl"
                         required
                       />
-                      <Input
-                        placeholder="Location"
-                        className="rounded-xl"
-                        required
-                      />
-                      <Input
-                        placeholder="Curriculum"
-                        className="rounded-xl"
-                        required
-                      />
+                      <Select
+                        onValueChange={(value) => {
+                          const country = countries.find(
+                            (c) => c.name === value
+                          );
+                          setSelectedCountry(country || null);
+                          setSelectedState(null);
+                        }}
+                      >
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem
+                              key={country.code2}
+                              value={country.name}
+                            >
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select
+                        onValueChange={(value) => {
+                          const state = selectedCountry?.states.find(
+                            (s) => s.name === value
+                          );
+                          setSelectedState(state || null);
+                        }}
+                        disabled={
+                          !selectedCountry ||
+                          selectedCountry.states.length === 0
+                        }
+                      >
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select state" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {selectedCountry?.states.map((state) => (
+                            <SelectItem key={state.code} value={state.name}>
+                              {state.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <Select>
                         <SelectTrigger className="rounded-xl">
                           <SelectValue placeholder="Select grade" />
