@@ -1,9 +1,17 @@
-import { Brain, Building2, Calendar, FileText, User } from "lucide-react";
+import {
+  Brain,
+  Landmark,
+  Calendar,
+  ClipboardList,
+  User,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import logo from "../../../../public/logo.png";
+import Link from "next/link";
 
-export const Sidebar = ({className}: {className?: string}) => {
+export const Sidebar = ({ className }: { className?: string }) => {
   return (
     <div className={`w-24 flex flex-col items-center py-8 h-svh ${className}`}>
       <div className="w-16 h-16 rounded-full flex items-center justify-center relative mb-12">
@@ -19,46 +27,55 @@ export const Sidebar = ({className}: {className?: string}) => {
           <Brain className="h-8 w-8" />
         </Button>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-[#e9e3d7] w-14 h-14"
-        >
-          <FileText className="h-8 w-8" />
-        </Button>
+        <Link href="/documents">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full bg-[#e9e3d7] w-14 h-14"
+          >
+            <ClipboardList className="h-8 w-8" />
+          </Button>
+        </Link>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-[#e9e3d7] w-14 h-14"
-        >
-          <Building2 className="h-8 w-8" />
-        </Button>
+        <Link href="/colleges">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full bg-[#e9e3d7] w-14 h-14"
+          >
+            <Landmark className="h-8 w-8" />
+          </Button>
+        </Link>
+        <Link href="/sessions">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full bg-[#e9e3d7] w-14 h-14"
+          >
+            <Calendar className="h-8 w-8" />
+          </Button>
+        </Link>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-[#e9e3d7] w-14 h-14"
-        >
-          <Calendar className="h-8 w-8" />
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-[#e9e3d7] w-14 h-14"
-        >
-          <FileText className="h-8 w-8" />
-        </Button>
+        <Link href="/counsellors">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full bg-[#e9e3d7] w-14 h-14"
+          >
+            <Users className="h-8 w-8" />
+          </Button>
+        </Link>
       </div>
 
-      <Button
-        variant="ghost"
-        size="icon"
-        className="rounded-full bg-[#e9e3d7] mt-auto w-14 h-14"
-      >
-        <User className="h-8 w-8" />
-      </Button>
+      <Link href="/profile">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full bg-[#e9e3d7] mt-auto w-14 h-14"
+        >
+          <User className="h-8 w-8" />
+        </Button>
+      </Link>
     </div>
   );
 };
