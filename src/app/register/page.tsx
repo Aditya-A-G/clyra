@@ -7,6 +7,13 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/ui/date-picker";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function RegisterPage() {
   const [step, setStep] = useState<"register" | "additional-info">("register");
@@ -17,6 +24,17 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const incomeRanges = [
+    "Less than $20,000",
+    "$20,000 - $34,999",
+    "$35,000 - $49,999",
+    "$50,000 - $74,999",
+    "$75,000 - $99,999",
+    "$100,000 - $149,999",
+    "$150,000 - $199,999",
+    "$200,000 or more",
+  ];
 
   const isPasswordValid = (password: string) => {
     const strongPasswordRegex =
@@ -198,12 +216,18 @@ export default function RegisterPage() {
                       />
 
                       <DatePicker />
-                      <Input
-                        placeholder="Annual income"
-                        className="rounded-xl"
-                        type="number"
-                        required
-                      />
+                      <Select>
+                        <SelectTrigger className="rounded-xl">
+                          <SelectValue placeholder="Select annual income" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {incomeRanges.map((range) => (
+                            <SelectItem key={range} value={range}>
+                              {range}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </>
                   ) : (
                     <>
