@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Bell } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import counsellorImage from "../../../../public/counsellor.png";
 import { useState } from "react";
 
@@ -121,12 +122,14 @@ export default function Schedule() {
                   </label>
                 </div>
                 <div className="flex justify-end">
+                  <Link href="/sessions">
                   <Button
                     className="bg-[#00813d] hover:bg-[#00813d]/90 text-white px-8 font-semibold"
                     onClick={() => setSelectedSlot(null)}
                   >
                     Pay $50 & Schedule
                   </Button>
+                  </Link>
                 </div>
               </div>
             </div>

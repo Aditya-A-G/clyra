@@ -93,7 +93,7 @@ export default function Sessions() {
                         : "Attended"}
                     </span>
                     {session.status === "attended" && (
-                      <Link href="/meeting-notes">
+                      <Link href="/meetings/1">
                         <Button className="bg-[#00813d] hover:bg-[#00813d]/90 text-white rounded-lg px-8 py-6  text-xl font-semibold">
                           View Meeting Notes
                         </Button>

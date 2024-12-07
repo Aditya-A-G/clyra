@@ -4,7 +4,7 @@ import { Sidebar } from "@/components/ui/dashboard/sidebar";
 import { Button } from "@/components/ui/button";
 import { Bell, ThumbsUp, ThumbsDown } from "lucide-react";
 import Image from "next/image";
-import counsellorImage from "../../../public/counsellor.png";
+import counsellorImage from "../../../../public/counsellor.png";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 
